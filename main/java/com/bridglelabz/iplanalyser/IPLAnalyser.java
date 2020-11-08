@@ -93,5 +93,41 @@ public class IPLAnalyser {
 
         }
 		
+	}
+
+	public String givenMaximumSixSortedDetails(String csvFile) throws CensusAnalyserException {
+		try {
+			loadData(csvFile);
+	        if (runsCSVList == null || runsCSVList.size() == 0) {
+	            throw new CensusAnalyserException("NO_CENSUS_DATA", CensusAnalyserException.ExceptionType.UNABLE_TO_PARSE);
+	        }			
+			Comparator<MostRuns> iplComparator = Comparator.comparing(ipl -> ipl.six) ;
+			this.RunsSort(iplComparator);
+		    String sortedRunsJson = new Gson().toJson(this.runsCSVList);
+		    return sortedRunsJson;
+			
+		} catch (RuntimeException e) {
+            		throw new CensusAnalyserException("Please select correct csv file  ",
+                    					CensusAnalyserException.ExceptionType.CSV_FILE_INTERNAL_ISSUES);
+		}	
+		
+	}	
+	
+	public String givenMaximumFourSortedDetails(String csvFile) throws CensusAnalyserException {
+		try {
+			loadData(csvFile);
+	        if (runsCSVList == null || runsCSVList.size() == 0) {
+	            throw new CensusAnalyserException("NO_CENSUS_DATA", CensusAnalyserException.ExceptionType.UNABLE_TO_PARSE);
+	        }			
+			Comparator<MostRuns> iplComparator = Comparator.comparing(ipl -> ipl.fours) ;
+			this.RunsSort(iplComparator);
+		    String sortedRunsJson = new Gson().toJson(this.runsCSVList);
+		    return sortedRunsJson;
+			
+		} catch (RuntimeException e) {
+            		throw new CensusAnalyserException("Please select correct csv file  ",
+                    					CensusAnalyserException.ExceptionType.CSV_FILE_INTERNAL_ISSUES);
+		}	
+		
 	}	
 }
