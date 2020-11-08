@@ -29,7 +29,7 @@ public class IPLAnalyser {
 
 	public int loadData(String csvFile) throws CensusAnalyserException 
 	{
-		try 
+		try
 		{
 			Reader reader = Files.newBufferedReader(Paths.get(csvFile));
 			ICSVBuilder csvBuilderFactory = CSVBuilderFactory.createCSVBuilder();
