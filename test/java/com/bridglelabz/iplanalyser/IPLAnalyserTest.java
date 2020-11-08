@@ -100,5 +100,19 @@ public class IPLAnalyserTest {
 		 		e.printStackTrace();
 		 	}
 	}
+	
+	@Test
+	public void givenBowlingDetails_WhenCalculated_ShouldReturnBestBowlingStrikeRate()
+	{
+		 try {
+     		IPLAnalyser iplAnalyser = new IPLAnalyser();
+			String sortedBowlingStrikeRate = iplAnalyser.givenBestBowlingStrikeRateSort(MOST_WICKETS_PATH);
+			MostWickets[] bestBowlingStrikeRate = new Gson().fromJson( sortedBowlingStrikeRate, MostWickets[].class);
+			Assert.assertEquals("Krishnappa Gowtham",bestBowlingStrikeRate[0].playerName);
+		 	} catch (CensusAnalyserException e)
+		 	{
+		 		e.printStackTrace();
+		 	}
+	}
 }
 
