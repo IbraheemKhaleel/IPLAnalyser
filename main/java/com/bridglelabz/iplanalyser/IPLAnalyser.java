@@ -180,4 +180,21 @@ public class IPLAnalyser {
         }
 		
 	}
+
+	public String givenBestBowlingStrikeRateSort(String wicketCSVFile) throws CensusAnalyserException {
+		try {
+			loadWicketData(wicketCSVFile);
+		 if (wicketsCSVList == null || wicketsCSVList.size() == 0) {
+	            throw new CensusAnalyserException("NO_CENSUS_DATA", CensusAnalyserException.ExceptionType.UNABLE_TO_PARSE);
+	        }			
+			Comparator<MostWickets> iplWicketComparator = Comparator.comparing(iplWicket -> iplWicket.bowlingStrikeRate) ;
+			this.WicketSort(iplWicketComparator);
+		    String sortedWicketsJson = new Gson().toJson(this.wicketsCSVList);
+		    return sortedWicketsJson;
+			
+		} catch (RuntimeException e) {
+         		throw new CensusAnalyserException("Please select correct csv file  ",
+                 					CensusAnalyserException.ExceptionType.CSV_FILE_INTERNAL_ISSUES);
+		}	
+	}
 }
