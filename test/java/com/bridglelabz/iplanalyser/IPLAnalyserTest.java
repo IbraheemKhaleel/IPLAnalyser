@@ -71,5 +71,19 @@ public class IPLAnalyserTest {
 		 		e.printStackTrace();
 		 	}
 	}
+
+	@Test
+	public void givenBatsmenRunDetails_WhenCalculated_ShouldReturnBetsStrikeRateWithSix()
+	{
+		 try {
+     		IPLAnalyser iplAnalyser = new IPLAnalyser();
+			String sortedStrikeRateWIthSix = iplAnalyser.givenMaximumSixSortedDetails(MOST_RUNS_PATH);
+			MostRuns[] mostStrikeRateWithSix = new Gson().fromJson( sortedStrikeRateWIthSix, MostRuns[].class);
+         Assert.assertEquals("Andre Russell",mostStrikeRateWithSix[0].player);
+		 	} catch (CensusAnalyserException e)
+		 	{
+		 		e.printStackTrace();
+		 	}
+	}
 }
 
