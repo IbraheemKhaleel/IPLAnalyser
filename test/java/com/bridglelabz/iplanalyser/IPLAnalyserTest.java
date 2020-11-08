@@ -9,7 +9,8 @@ import com.google.gson.Gson;
 
 public class IPLAnalyserTest {
 	private static final String MOST_RUNS_PATH = "C:\\Users\\Ibrahim Khaleel\\eclipse-workspace\\IPLAnalyser\\src\\test\\resources\\IPL2019FactsheetMostRuns.csv" ;
-
+	private static final String MOST_WICKETS_PATH = "C:\\Users\\Ibrahim Khaleel\\eclipse-workspace\\IPLAnalyser\\src\\test\\resources\\IPL2019FactsheetMostWkts.csv" ;
+	
 	@Test
 	public void givenBatsmenRunDetails_WhenCalculated_ShouldReturnMaximumBattingAverage()
 	{
@@ -80,6 +81,20 @@ public class IPLAnalyserTest {
 			String sortedStrikeRateWIthSix = iplAnalyser.givenMaximumSixSortedDetails(MOST_RUNS_PATH);
 			MostRuns[] mostStrikeRateWithSix = new Gson().fromJson( sortedStrikeRateWIthSix, MostRuns[].class);
          Assert.assertEquals("Andre Russell",mostStrikeRateWithSix[0].player);
+		 	} catch (CensusAnalyserException e)
+		 	{
+		 		e.printStackTrace();
+		 	}
+	}
+	
+	@Test
+	public void givenBowlingDetails_WhenCalculated_ShouldReturnBestBowlingAverage()
+	{
+		 try {
+     		IPLAnalyser iplAnalyser = new IPLAnalyser();
+			String sortedBowlingAverage = iplAnalyser.givenBestBowlingAverageSort(MOST_WICKETS_PATH);
+			MostWickets[] bestBowlingAverage = new Gson().fromJson( sortedBowlingAverage, MostWickets[].class);
+			Assert.assertEquals("Krishnappa Gowtham",bestBowlingAverage[0].playerName);
 		 	} catch (CensusAnalyserException e)
 		 	{
 		 		e.printStackTrace();
