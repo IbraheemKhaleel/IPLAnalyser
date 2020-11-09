@@ -10,7 +10,7 @@ import com.google.gson.Gson;
 public class IPLAnalyserTest {
 	private static final String MOST_RUNS_PATH = "C:\\Users\\Ibrahim Khaleel\\eclipse-workspace\\IPLAnalyser\\src\\test\\resources\\IPL2019FactsheetMostRuns.csv" ;
 	private static final String MOST_WICKETS_PATH = "C:\\Users\\Ibrahim Khaleel\\eclipse-workspace\\IPLAnalyser\\src\\test\\resources\\IPL2019FactsheetMostWkts.csv" ;
-	
+
 	@Test
 	public void givenBatsmenRunDetails_WhenCalculated_ShouldReturnMaximumBattingAverage()
 	{
@@ -86,7 +86,7 @@ public class IPLAnalyserTest {
 		 		e.printStackTrace();
 		 	}
 	}
-	
+
 	@Test
 	public void givenBowlingDetails_WhenCalculated_ShouldReturnBestBowlingAverage()
 	{
@@ -100,7 +100,7 @@ public class IPLAnalyserTest {
 		 		e.printStackTrace();
 		 	}
 	}
-	
+
 	@Test
 	public void givenBowlingDetails_WhenCalculated_ShouldReturnBestBowlingStrikeRate()
 	{
@@ -109,6 +109,20 @@ public class IPLAnalyserTest {
 			String sortedBowlingStrikeRate = iplAnalyser.givenBestBowlingStrikeRateSort(MOST_WICKETS_PATH);
 			MostWickets[] bestBowlingStrikeRate = new Gson().fromJson( sortedBowlingStrikeRate, MostWickets[].class);
 			Assert.assertEquals("Krishnappa Gowtham",bestBowlingStrikeRate[0].playerName);
+		 	} catch (CensusAnalyserException e)
+		 	{
+		 		e.printStackTrace();
+		 	}
+	}
+
+	@Test
+	public void givenBowlingDetails_WhenCalculated_ShouldReturnBestEconomyRate()
+	{
+		 try {
+     		IPLAnalyser iplAnalyser = new IPLAnalyser();
+			String sortedBowlingEconomyRate = iplAnalyser.givenBestBowlingEconomyRateSort(MOST_WICKETS_PATH);
+			MostWickets[] bestBowlingEconomyRate = new Gson().fromJson( sortedBowlingEconomyRate, MostWickets[].class);
+			Assert.assertEquals("Ben Cutting", bestBowlingEconomyRate[0].playerName);
 		 	} catch (CensusAnalyserException e)
 		 	{
 		 		e.printStackTrace();
